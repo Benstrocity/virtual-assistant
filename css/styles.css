@@ -1,0 +1,125 @@
+html {
+    box-sizing: border-box;
+    box-sizing: padding-box;
+    font-family: Arial, sans-serif;
+}
+
+.appWindow {
+    display: flex;
+    flex-direction: column;
+    margin: 5% auto;
+    max-width: 250px;
+    min-width: 250px;
+    height: 500px;
+    border-radius: 15px;
+    box-shadow: 2px 2px 15px, -2px 0 15px #000;
+}
+
+.appInput {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    margin-top: 50%;
+    background-color: white;
+    padding: 5%;
+    box-shadow: 5px 5px 20px, -5px 0 20px #000;
+    border-radius: 15px;
+}
+
+.userInput {
+    display: flex;
+    align-self: center;
+    margin-top: auto;
+    margin-bottom: 2%;
+}
+
+#appHead {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 45px;
+    background-color: chocolate;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+#appTime {
+    font-size: .75rem;
+    color: #fff;
+}
+
+#appAssistant {
+    margin: 0;
+}
+
+#userName {
+    border: 1px solid chocolate;
+    height: 20px;
+    padding-left: 2%;
+    margin-bottom: 10%;
+}
+
+#assistantName {
+    border: 1px solid chocolate;
+    height: 20px;
+    padding-left: 2%;
+}
+
+#appStartButton {
+    color: #fff;
+    width: 50%;
+    align-self: center;
+    background-color: chocolate;
+    border: none;
+    height: 30px;
+}
+
+#appVer {
+    font-size: .75rem;
+    text-align: center;
+    display: block;
+    margin-top: 5%;
+    margin-bottom: -5%;
+    
+}
+
+.appInteract {
+    display: flex;
+    flex-direction: column;
+}
+
+.appResponse {
+    display: none;
+    font-size: .85rem;
+    width: 55%;
+    margin-left: 2%;
+    background-color: lightgray;
+    border-radius: 10px;
+    padding: 2%;
+    margin-bottom: 0;
+}
+
+.appQuestion {
+    display: none;
+    align-self: flex-end;
+    font-size: .85rem;
+    width: 55%;
+    margin-right: 2%;
+    background-color: chocolate;
+    border-radius: 10px;
+    padding: 2%;
+    margin-bottom: 0;
+}
+
+#appText {
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    padding-left: 2%;
+}
+
+#appSendButton {
+    margin-left: 2%;
+    background-color: chocolate;
+    border: none;
+    color: #fff;
+}

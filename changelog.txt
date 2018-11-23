@@ -1,0 +1,4 @@
+v0.1.1 Changelog
+- Assistant will now respond to 'hello'
+- Assistant has a default response to unknown questions
+- New questions will now populate on a new line
