@@ -30,6 +30,16 @@ html {
     border-radius: 15px;
 }
 
+.appSettings {
+    position: absolute;
+    top: 2%;
+    left: 3%;
+}
+
+.appSettings img {
+    width: 10%;
+}
+
 .userInput {
     display: flex;
     align-self: center;
@@ -134,4 +144,5 @@ html {
     border: none;
     color: #fff;
     min-height: 20px;
+    margin-left: 5px;
 }

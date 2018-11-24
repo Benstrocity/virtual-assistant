@@ -12,6 +12,9 @@ const appQuestionText = document.querySelector('.appQuestion');
 const appText = document.querySelector('#appText');
 const appSendButton = document.querySelector('#appSendButton');
 const appStartButton = document.querySelector('#appStartButton');
+const userInput = document.querySelector('.userInput');
+const appSettingsIcon = document.querySelector('.appSettings img');
+const appSettingsMenu = document.querySelector('#settingsMenu');
 
 //Initial styling and functionality on first load
 function loadApp () {
@@ -20,11 +23,17 @@ function loadApp () {
     appSendButton.style.zIndex = '-1';
     appResponseText.style.zIndex = '-1';
     appTime.innerHTML = getTime();
-    
+    //Send input to start app by clicking 'Start'
     appStartButton.addEventListener('click', () => {
         startApp(); 
     });
-}
+    //Send input to start app by pressing 'Enter'
+    appInput.addEventListener('keyup', (e) => {
+       if (e.keyCode === 13) {
+           startApp();
+       } 
+    });
+};
 
 //Initial 'welcome' message from app assistant after startApp() executes
 //This function also contains an event listener for user input which triggers the assistant to respond in autoRespond()
@@ -40,15 +49,32 @@ function startApp () {
     appResponseText.style.display = "inline";
 }
 
+//Click 'Send' button to send input
 appSendButton.addEventListener('click', () => {
-    
     let newQuestion = document.createElement('p');
     newQuestion.setAttribute('class', 'appQuestion');
     newQuestion.innerHTML = appText.value;
     appInteract.appendChild(newQuestion);
     newQuestion.style.display = 'inline';
-    
+
     autoRespond();
+});
+
+//Press enter on the keyboard to send input
+userInput.addEventListener('keyup', function (e) {
+    if (e.keyCode === 13) {
+        let newQuestion = document.createElement('p');
+        newQuestion.setAttribute('class', 'appQuestion');
+        newQuestion.innerHTML = appText.value;
+        appInteract.appendChild(newQuestion);
+        newQuestion.style.display = 'inline';
+
+        autoRespond();  
+    }
+});
+
+appSettingsIcon.addEventListener('click', () => {
+    console.log('good');
 });
 
 //Triggered by user input in the startApp() function. Tells the assistant to respond and how to respond based on user input
@@ -62,6 +88,12 @@ function autoRespond () {
     
     if (newTextLower === 'hello') {
         newResponse.innerHTML = 'Hello there!';
+        appInteract.appendChild(newResponse);
+        newResponse.style.display = 'inline';
+        
+        appText.value = '';
+    } else if (newTextLower.includes('help')) {
+        newResponse.innerHTML = 'I am here to help! Here are a list of key words you can add into your question that I can respond to: <ul><li><b>"Time"</b></li><li><b>"My Name"</b></li><li><b>"Your Name"</b></li><li><b>"Help"</b></li><li><b>"Hello"</b></li></ul>I am constantly learning, so check back frequently.';
         appInteract.appendChild(newResponse);
         newResponse.style.display = 'inline';
         
@@ -100,12 +132,15 @@ function getTime () {
     let m = dateTime.getMinutes();
     let ampm = '';
     let clock = '';
+    //Convert to non military time
     if (h >= 12) {
+        h -= 12;
         ampm = 'PM';
-    } else {
+    } else if (h < 12) {
         ampm = 'AM';
     }
-    if (m.valueOf < 10) {
+    //Add leading '0' to minutes
+    if (m < 10) {
         clock = h + ':0' + m + ' ' + ampm; 
     } else {
         clock = h + ':' + m + ' ' + ampm;
@@ -113,4 +148,4 @@ function getTime () {
     return clock;
 }
 
-loadApp();
+loadApp(); //Calling the initial function to load the app
