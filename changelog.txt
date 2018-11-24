@@ -1,4 +1,10 @@
-v0.1.1 Changelog
+v0.1.0 Changelog - 11/22/2018
 - Assistant will now respond to 'hello'
 - Assistant has a default response to unknown questions
 - New questions will now populate on a new line
+
+v0.2.0 - 11/24/2018
+- Messages no longer flow off of the page
+- New messages automatically cause the screen to scroll to the bottom
+- The assistant will now respond to questions about time, your name, and their name
+- minor UI styling changes
