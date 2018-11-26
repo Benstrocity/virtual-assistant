@@ -39,7 +39,9 @@ function loadApp () {
     appText.style.zIndex = '-1';
     appSendButton.style.zIndex = '-1';
     appResponseText.style.zIndex = '-1';
-    appTime.innerHTML = getTime();
+    
+    setInterval(updateTime, 1000);
+    
     //Send input to start app by clicking 'Start'
     appStartButton.addEventListener('click', () => {
         startApp(); 
@@ -75,12 +77,7 @@ function startApp () {
 
         appSettingsMenu.style.display = 'block';
         appInput.style.display = 'none';
-
-        let trimColor = document.querySelector('#trimColor');
-        let bgColor = document.querySelector('#bgColor');
-        let messageColor = document.querySelector('#messageColor');
-        let buttonColor = document.querySelector('#buttonColor');
-        let textColor = document.querySelector('#textColor');
+        
         const confirmSettings = document.querySelector('#confirmSettings');
         const cancelSettings = document.querySelector('#cancelSettings');
         //When cancel button is clicked, menu dissapears
@@ -210,6 +207,7 @@ function getTime () {
     let h = dateTime.getHours();
     let m = dateTime.getMinutes();
     let ampm;
+    let clock;
     //Convert to non military time
     if (h >= 12) {
         h -= 12;
@@ -219,11 +217,16 @@ function getTime () {
     }
     //Add leading '0' to minutes
     if (m < 10) {
-        clock = h + ':0' + m + ' ' + ampm; 
+        clock = h + ':0' + m + ' ' + ampm;
     } else {
         clock = h + ':' + m + ' ' + ampm;
     } 
     return clock;
 }
+
+//Updates the time automatically. The function is called within the initial loadApp() function
+function updateTime() {
+        appTime.innerHTML = getTime();   
+    }
 
 loadApp(); //Calling the initial function to load the app

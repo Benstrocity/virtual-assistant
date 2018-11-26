@@ -1,16 +1,16 @@
-v0.1.0 Changelog - 11/22/2018
+v0.1.0 Update - 11/22/2018
 - Assistant will now respond to 'hello'
 - Assistant has a default response to unknown questions
 - New questions will now populate on a new line
 
-v0.2.0 - 11/24/2018
+v0.2.0 Update - 11/24/2018
 - Added local time to top of app
 - Messages no longer flow off of the page
 - New messages automatically cause the screen to scroll to the bottom
 - The assistant will now respond to questions about time, your name, and their name
 - minor UI styling changes
 
-v0.3.0 - 11/26/2018
+v0.3.0 Update - 11/26/2018
 - Added ability to press 'Enter' on the keyboard to send input
 - Updated clock in app to use non military time
 - Updated code so that there is a leading '0' for the minutes on the clock
@@ -20,3 +20,6 @@ v0.3.0 - 11/26/2018
 - Added placeholder for Virtual Assistant's name
 - Added new question/response options: "Good morning", "Good evening", "Good after noon", and "How are you"
 - Asking "How are you" introduces a new feature. Randomized responses from your assistant
+
+v0.3.1 Patch - 11/26/2018
+- Fixed issue with built in clock not updated automatically
