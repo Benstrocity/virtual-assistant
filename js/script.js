@@ -1,4 +1,4 @@
-//Define all constants
+//Define all global const and let
 const appWindow = document.querySelector('.appWindow');
 const appInteract = document.querySelector('.appInteract');
 const appInput = document.querySelector('.appInput');
@@ -18,20 +18,11 @@ const appSettingsMenu = document.querySelector('#settingsMenu');
 let newResponse;
 let newText;
 let newQuestion;
-//const settingArr = [
-//        trimColor,
-//        bgColor,
-//        messageColor,
-//        buttonColor,
-//        textColor
-//    ];
-//const settingValues = {
-//    trimColor : document.querySelector('#trimColor option'),
-//    bgColor : document.querySelector('#bgColor option'),
-//    messageColor : document.querySelector('#messageColor option'),
-//    buttonColor : document.querySelector('#buttonColor option'),
-//    textColor : document.querySelector('#textColor option'),
-//};
+const trimColor = document.querySelector('#trimColor option');
+const bgColor = document.querySelector('#bgColor option');
+const messageColor = document.querySelector('#messageColor option');
+const buttonColor = document.querySelector('#buttonColor option');
+const textColor = document.querySelector('#textColor option');
 
 //Initial styling and functionality on first load
 function loadApp () {
@@ -39,8 +30,6 @@ function loadApp () {
     appText.style.zIndex = '-1';
     appSendButton.style.zIndex = '-1';
     appResponseText.style.zIndex = '-1';
-    
-    setInterval(updateTime, 1000);
     
     //Send input to start app by clicking 'Start'
     appStartButton.addEventListener('click', () => {
@@ -80,6 +69,7 @@ function startApp () {
         
         const confirmSettings = document.querySelector('#confirmSettings');
         const cancelSettings = document.querySelector('#cancelSettings');
+        
         //When cancel button is clicked, menu dissapears
         cancelSettings.addEventListener('click', () => {
             appSettingsMenu.style.display = 'none';
@@ -224,9 +214,11 @@ function getTime () {
     return clock;
 }
 
-//Updates the time automatically. The function is called within the initial loadApp() function
+//Updates the time automatically. The function is called within the setInterval method below the function
 function updateTime() {
         appTime.innerHTML = getTime();   
     }
+setInterval(updateTime, 100);
 
-loadApp(); //Calling the initial function to load the app
+ //Calling the initial function to load the app
+loadApp();
