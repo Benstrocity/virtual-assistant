@@ -30,14 +30,85 @@ html {
     border-radius: 15px;
 }
 
-.appSettings {
+.appSettingsIcon {
     position: absolute;
     top: 2%;
     left: 3%;
 }
 
-.appSettings img {
+.appSettingsIcon img {
     width: 10%;
+}
+
+#settingsMenu {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 5px 5px 15px, -5px 0 15px #000;
+    width: 75%;
+    align-self: center;
+    top: 25%;
+    height: 200px;
+    overflow-y: auto;
+    position: absolute;
+}
+
+#settingsMenu::-webkit-scrollbar {
+    display: none !important;
+}
+
+#settingsMenu h2 {
+    margin: 0;
+    text-align: center;
+    font-size: 1.25rem;
+}
+
+#styleSelect p {
+    margin-bottom: 0;
+    font-size: .75rem;
+    font-weight: bold;
+}
+
+#styleSelect {
+    text-align: center;
+    padding: 5px;
+}
+
+#styleSelect option {
+    height: 50px;
+}
+
+#trimColor,
+#bgColor,
+#messageColor,
+#buttonColor,
+#textColor {
+    font-size: .75rem;
+    width: 40%;
+}
+
+#settingButtons {
+    margin: 3% auto auto auto;
+    text-align: center;
+}
+
+#confirmSettings {
+    font-size: .75rem;
+    border-radius: 5px;
+    background-color: chocolate;
+    border: none;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+#cancelSettings {
+    font-size: .75rem;
+    border-radius: 5px;
+    background-color: #000;
+    border: none;
+    color: #fff;
 }
 
 .userInput {

@@ -9,7 +9,7 @@
         <div class='appWindow'>
             <div id='appHead'>
                 <span id='appTime'>Local Time</span>
-                <h3 id='appAssistant'></h3>
+                <h3 id='appAssistant'>Virtual Assistant</h3>
             </div>
             <div class="appInput">
                 <input placeholder="Your name" id="userName" type="text">
@@ -18,9 +18,76 @@
                 <button id="appStartButton">Start</button>
                 <span id='appVer'>v0.3.0</span>
             </div>
-            <div class="appInteract">
-                <div id='settingsMenu'>
+            <div id='settingsMenu'>
+                <h2>Settings</h2>
+                <div id='styleSelect'>
+                    <p>Trim Color</p>
+                    <select id='trimColor'>
+                        <option value ='default'>Default</option>
+                        <option value='red'>Red</option>
+                        <option value='green'>Green</option>
+                        <option value='blue'>Blue</option>
+                        <option value='pink'>Pink</option>
+                        <option value='purple'>Purple</option>
+                        <option value='yellow'>Yellow</option>
+                        <option value='black'>Black</option>
+                        <option value='white'>White</option>
+                    </select>
+                    <p>Background Color</p>
+                    <select id='bgColor'>
+                        <option value ='default'>Default</option>
+                        <option value='red'>Red</option>
+                        <option value='green'>Green</option>
+                        <option value='blue'>Blue</option>
+                        <option value='pink'>Pink</option>
+                        <option value='purple'>Purple</option>
+                        <option value='yellow'>Yellow</option>
+                        <option value='black'>Black</option>
+                        <option value='white'>White</option>
+                    </select>
+                    <p>Message Color</p>
+                    <select id='messageColor'>
+                        <option value ='default'>Default</option>
+                        <option value='red'>Red</option>
+                        <option value='green'>Green</option>
+                        <option value='blue'>Blue</option>
+                        <option value='pink'>Pink</option>
+                        <option value='purple'>Purple</option>
+                        <option value='yellow'>Yellow</option>
+                        <option value='black'>Black</option>
+                        <option value='white'>White</option>
+                    </select>
+                    <p>Button Color</p>
+                    <select id='buttonColor'>
+                        <option value ='default'>Default</option>
+                        <option value='red'>Red</option>
+                        <option value='green'>Green</option>
+                        <option value='blue'>Blue</option>
+                        <option value='pink'>Pink</option>
+                        <option value='purple'>Purple</option>
+                        <option value='yellow'>Yellow</option>
+                        <option value='black'>Black</option>
+                        <option value='white'>White</option>
+                    </select>
+                    <p>Text Color</p>
+                    <select id='textColor'>
+                        <option value ='default'>Default</option>
+                        <option value='red'>Red</option>
+                        <option value='green'>Green</option>
+                        <option value='blue'>Blue</option>
+                        <option value='pink'>Pink</option>
+                        <option value='purple'>Purple</option>
+                        <option value='yellow'>Yellow</option>
+                        <option value='black'>Black</option>
+                        <option value='white'>White</option>
+                    </select>
                 </div>
+                <div id='settingButtons'>
+                    <button id='confirmSettings'>Confirm</button>
+                    <button id='cancelSettings'>Cancel</button>
+                </div>
+            </div>
+            <div class="appInteract">
                 <p class='appResponse'></p>
                 <p class='appQuestion'></p>
             </div>
@@ -28,7 +95,7 @@
                 <input placeholder='Type your message' id='appText' type='text'>
                 <button id='appSendButton'>Send</button>
             </div>
-            <div class="appSettings">
+            <div class="appSettingsIcon">
                 <img src='img/settings.png' alt='Settings Icon'>
             </div>
         </div>
