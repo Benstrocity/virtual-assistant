@@ -23,3 +23,7 @@ v0.3.0 Update - 11/26/2018
 
 v0.3.1 Patch - 11/26/2018
 - Fixed issue with built in clock not updated automatically
+
+v0.4.0 Update - 11/27/2018
+- The settings menu is now fully functional so that the apps color scheme can be modified
+- Updated assistants responses to accept additional key words

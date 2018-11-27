@@ -15,14 +15,19 @@ const appStartButton = document.querySelector('#appStartButton');
 const userInput = document.querySelector('.userInput');
 const appSettingsIcon = document.querySelector('.appSettingsIcon img');
 const appSettingsMenu = document.querySelector('#settingsMenu');
+const confirmSettings = document.querySelector('#confirmSettings');
+const cancelSettings = document.querySelector('#cancelSettings');
+const trimSelect = document.querySelector('#trimColor');
+const bgSelect = document.querySelector('#bgColor');
+const msgSelect = document.querySelector('#messageColor');
+const btnSelect = document.querySelector('#buttonColor');
+const txtSelect = document.querySelector('#textColor');
+//Specifying certain let items in the global scope
 let newResponse;
 let newText;
 let newQuestion;
-const trimColor = document.querySelector('#trimColor option');
-const bgColor = document.querySelector('#bgColor option');
-const messageColor = document.querySelector('#messageColor option');
-const buttonColor = document.querySelector('#buttonColor option');
-const textColor = document.querySelector('#textColor option');
+let questionArr = [];
+let newTextLower;
 
 //Initial styling and functionality on first load
 function loadApp () {
@@ -54,8 +59,34 @@ function startApp () {
     appInput.style.display = 'none';
     
     appAssistant.innerHTML = assistantName.value;
-    appResponseText.innerHTML = 'Hello, ' + userName.value + ', my name is ' + appAssistant.innerHTML + '. How can I help you today?'; 
+    appResponseText.innerHTML = 'Hello, ' + userName.value + ', my name is ' + appAssistant.innerHTML + '. How can I help you today? Type <b>"Help"</b> for a list of commands.'; 
     appResponseText.style.display = "inline";
+    
+    //Click 'Send' button to send input
+    appSendButton.addEventListener('click', () => {
+        newQuestion = document.createElement('p');
+        newQuestion.setAttribute('class', 'appQuestion');
+        newQuestion.innerHTML = appText.value;
+        appInteract.appendChild(newQuestion);
+        newQuestion.style.display = 'inline';
+        questionArr.push(newQuestion);
+
+        autoRespond();
+    });
+
+    //Press enter on the keyboard to send input
+    userInput.addEventListener('keyup', function (e) {
+        if (e.keyCode === 13) {
+            newQuestion = document.createElement('p');
+            newQuestion.setAttribute('class', 'appQuestion');
+            newQuestion.innerHTML = appText.value;
+            appInteract.appendChild(newQuestion);
+            newQuestion.style.display = 'inline';
+            questionArr.push(newQuestion);
+
+            autoRespond();  
+        }
+    });
     
     //Settings icon enabled once startApp() is called
     appSettingsIcon.addEventListener('click', () => {
@@ -65,12 +96,60 @@ function startApp () {
         appInteract.style.zIndex = '-1';
 
         appSettingsMenu.style.display = 'block';
-        appInput.style.display = 'none';
+        appInput.style.display = 'none';        
         
-        const confirmSettings = document.querySelector('#confirmSettings');
-        const cancelSettings = document.querySelector('#cancelSettings');
+        //When confirm button is clicked, menu dissapears and settings are saved
+        confirmSettings.addEventListener('click', () => {
+            appSettingsMenu.style.display = 'none';
+            appSettingsMenu.style.zIndex = '0';
+            appWindow.style.backgroundColor = '#fff';
+            appInteract.style.zIndex = '1';
+            appText.style.zIndex = '1';
+            appSendButton.style.zIndex = '1';
+            
+            function updateTrim () {
+                let a = trimSelect.selectedIndex;
+                let newTrim = trimSelect.options[a].innerHTML;
+                appHead.style.backgroundColor = newTrim;
+            }
+            updateTrim();
+            
+            function updateBg () {
+                let b = bgSelect.selectedIndex;
+                let newBG = bgSelect.options[b].innerHTML;
+                appWindow.style.backgroundColor = newBG;
+            }
+            updateBg();
+            
+            function updateMsg () {
+                let c = msgSelect.selectedIndex;
+                let newMsg = msgSelect.options[c].innerHTML;
+                for (let i = 0; i < questionArr.length; i++) {
+                    questionArr[i].style.backgroundColor = newMsg;
+                }
+            }
+            setInterval(updateMsg);
+            
+            function updateBtn () {
+                let d = btnSelect.selectedIndex;
+                let newBtn = btnSelect.options[d].innerHTML;
+                appSendButton.style.backgroundColor = newBtn;
+                confirmSettings.style.backgroundColor = newBtn;
+            }
+            updateBtn();
+            
+            function updateTxt () {
+                let e = txtSelect.selectedIndex;
+                let newTxt = txtSelect.options[e].innerHTML;
+                appSendButton.style.color = newTxt;
+                appStartButton.style.color = newTxt;
+                appInteract.style.color = newTxt;
+                appHead.style.color = newTxt;
+            }
+            updateTxt();
+        });
         
-        //When cancel button is clicked, menu dissapears
+        //When cancel button is clicked, menu dissapears and settings are discarded
         cancelSettings.addEventListener('click', () => {
             appSettingsMenu.style.display = 'none';
             appSettingsMenu.style.zIndex = '0';
@@ -82,40 +161,16 @@ function startApp () {
     });
 }
 
-//Click 'Send' button to send input
-appSendButton.addEventListener('click', () => {
-    newQuestion = document.createElement('p');
-    newQuestion.setAttribute('class', 'appQuestion');
-    newQuestion.innerHTML = appText.value;
-    appInteract.appendChild(newQuestion);
-    newQuestion.style.display = 'inline';
-
-    autoRespond();
-});
-
-//Press enter on the keyboard to send input
-userInput.addEventListener('keyup', function (e) {
-    if (e.keyCode === 13) {
-        let newQuestion = document.createElement('p');
-        newQuestion.setAttribute('class', 'appQuestion');
-        newQuestion.innerHTML = appText.value;
-        appInteract.appendChild(newQuestion);
-        newQuestion.style.display = 'inline';
-
-        autoRespond();  
-    }
-});
-
 //Triggered by user input in the startApp() function. Tells the assistant to respond and how to respond based on user input
 function autoRespond () {
     
     newResponse = document.createElement('p');
     newText = appText.value; //store user input in a new variable
-    let newTextLower = newText.toLowerCase(); //Format user input to lowercase
+    newTextLower = newText.toLowerCase(); //Format user input to lowercase
     newResponse.setAttribute('class', 'appResponse');
     appInteract.scrollTop = appInteract.scrollHeight;
     
-    if (newTextLower === 'hello') {
+    if (newTextLower.includes('hello') || newTextLower.includes('hi')) {
         newResponse.innerHTML = 'Hello there!';
         appInteract.appendChild(newResponse);
         newResponse.style.display = 'inline';
@@ -145,25 +200,25 @@ function autoRespond () {
         newResponse.style.display = 'inline';
         
         appText.value = '';
-    } else if (newTextLower.includes('good mo' || 'morning')) {
+    } else if (newTextLower.includes('good mo') || newTextLower.includes('morning')) {
         newResponse.innerHTML = 'Good morning, ' + userName.value + '.';
         appInteract.appendChild(newResponse);
         newResponse.style.display = 'inline';
         
         appText.value = '';
-    } else if (newTextLower.includes('good af' || 'afternoon')) {
+    } else if (newTextLower.includes('good af') || newTextLower.includes('afternoon')) {
         newResponse.innerHTML = 'Good afternoon, ' + userName.value + '.';
         appInteract.appendChild(newResponse);
         newResponse.style.display = 'inline';
         
         appText.value = '';
-    } else if (newTextLower.includes('good ev' || 'evening')) {
+    } else if (newTextLower.includes('good ev') || newTextLower.includes('evening')) {
         newResponse.innerHTML = 'Good evening, ' + userName.value + '.';
         appInteract.appendChild(newResponse);
         newResponse.style.display = 'inline';
         
         appText.value = '';
-    } else if (newTextLower.includes('how' && 'you')) {
+    } else if (newTextLower.includes('how') && newTextLower.includes('you')) {
         let randNum = Math.floor(Math.random() * 3) + 1;
         randNum = parseInt(randNum);
         if (randNum === 1) {
