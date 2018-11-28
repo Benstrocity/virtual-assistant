@@ -27,3 +27,7 @@ v0.3.1 Patch - 11/26/2018
 v0.4.0 Update - 11/27/2018
 - The settings menu is now fully functional so that the apps color scheme can be modified
 - Updated assistants responses to accept additional key words
+
+v0.4.1 Patch - 11/28/2018
+- Update to auto scrolling. The message window will now auto scroll completely down to the newest response from the assistant
+- Update to settings menu. 'Cancel' button changed to 'Reset'. Resets settings to default. (Current issue with clearing the message bubble settings)

@@ -16,12 +16,13 @@ const userInput = document.querySelector('.userInput');
 const appSettingsIcon = document.querySelector('.appSettingsIcon img');
 const appSettingsMenu = document.querySelector('#settingsMenu');
 const confirmSettings = document.querySelector('#confirmSettings');
-const cancelSettings = document.querySelector('#cancelSettings');
+const resetSettings = document.querySelector('#resetSettings');
 const trimSelect = document.querySelector('#trimColor');
 const bgSelect = document.querySelector('#bgColor');
 const msgSelect = document.querySelector('#messageColor');
 const btnSelect = document.querySelector('#buttonColor');
 const txtSelect = document.querySelector('#textColor');
+const settingsArr = [trimSelect, bgSelect, msgSelect, btnSelect, txtSelect];
 //Specifying certain let items in the global scope
 let newResponse;
 let newText;
@@ -70,7 +71,7 @@ function startApp () {
         appInteract.appendChild(newQuestion);
         newQuestion.style.display = 'inline';
         questionArr.push(newQuestion);
-
+        
         autoRespond();
     });
 
@@ -83,7 +84,7 @@ function startApp () {
             appInteract.appendChild(newQuestion);
             newQuestion.style.display = 'inline';
             questionArr.push(newQuestion);
-
+            
             autoRespond();  
         }
     });
@@ -108,22 +109,22 @@ function startApp () {
             appSendButton.style.zIndex = '1';
             
             function updateTrim () {
-                let a = trimSelect.selectedIndex;
-                let newTrim = trimSelect.options[a].innerHTML;
+                let a = settingsArr[0].selectedIndex;
+                let newTrim = settingsArr[0].options[a].innerHTML;
                 appHead.style.backgroundColor = newTrim;
             }
             updateTrim();
             
             function updateBg () {
-                let b = bgSelect.selectedIndex;
-                let newBG = bgSelect.options[b].innerHTML;
+                let b = settingsArr[1].selectedIndex;
+                let newBG = settingsArr[1].options[b].innerHTML;
                 appWindow.style.backgroundColor = newBG;
             }
             updateBg();
             
             function updateMsg () {
-                let c = msgSelect.selectedIndex;
-                let newMsg = msgSelect.options[c].innerHTML;
+                let c = settingsArr[2].selectedIndex;
+                let newMsg = settingsArr[2].options[c].innerHTML;
                 for (let i = 0; i < questionArr.length; i++) {
                     questionArr[i].style.backgroundColor = newMsg;
                 }
@@ -131,18 +132,17 @@ function startApp () {
             setInterval(updateMsg);
             
             function updateBtn () {
-                let d = btnSelect.selectedIndex;
-                let newBtn = btnSelect.options[d].innerHTML;
+                let d = settingsArr[3].selectedIndex;
+                let newBtn = settingsArr[3].options[d].innerHTML;
                 appSendButton.style.backgroundColor = newBtn;
                 confirmSettings.style.backgroundColor = newBtn;
             }
             updateBtn();
             
             function updateTxt () {
-                let e = txtSelect.selectedIndex;
-                let newTxt = txtSelect.options[e].innerHTML;
+                let e = settingsArr[4].selectedIndex;
+                let newTxt = settingsArr[4].options[e].innerHTML;
                 appSendButton.style.color = newTxt;
-                appStartButton.style.color = newTxt;
                 appInteract.style.color = newTxt;
                 appHead.style.color = newTxt;
             }
@@ -150,13 +150,28 @@ function startApp () {
         });
         
         //When cancel button is clicked, menu dissapears and settings are discarded
-        cancelSettings.addEventListener('click', () => {
+        resetSettings.addEventListener('click', () => {
             appSettingsMenu.style.display = 'none';
             appSettingsMenu.style.zIndex = '0';
             appWindow.style.backgroundColor = '#fff';
             appInteract.style.zIndex = '1';
             appText.style.zIndex = '1';
             appSendButton.style.zIndex = '1';
+
+            appHead.style.backgroundColor = 'chocolate';
+            appWindow.style.backgroundColor = 'white';
+            
+            for (let i = 0; i < questionArr.length; i++) {
+                questionArr[i].style.backgroundColor = 'chocolate';
+            }
+                
+            appSendButton.style.backgroundColor = 'chocolate';
+            confirmSettings.style.backgroundColor = 'chocolate';
+            appSendButton.style.color = 'black';
+            appInteract.style.color = 'black';
+            appHead.style.color = 'black';
+            
+            settingsArr[0].options.innerHTML = settingsArr[0].options[0].innerHTML;
         });
     });
 }
@@ -168,9 +183,8 @@ function autoRespond () {
     newText = appText.value; //store user input in a new variable
     newTextLower = newText.toLowerCase(); //Format user input to lowercase
     newResponse.setAttribute('class', 'appResponse');
-    appInteract.scrollTop = appInteract.scrollHeight;
     
-    if (newTextLower.includes('hello') || newTextLower.includes('hi')) {
+    if (newTextLower === 'hello' || newTextLower === 'hi') {
         newResponse.innerHTML = 'Hello there!';
         appInteract.appendChild(newResponse);
         newResponse.style.display = 'inline';
@@ -245,9 +259,15 @@ function autoRespond () {
     }
 }
 
+//Updates scrolling for the message window automatically every 1/10 of a second
+function scrollToBottom() {
+    appInteract.scrollTop = appInteract.scrollHeight;
+}
+setInterval(scrollToBottom, 100);
+
 //Get local date and time to display in the appHead for the user
 //Time does not update automatically - fix in v0.3.1 patch
-function getTime () {
+function getTime() {
     let dateTime = new Date();
     let h = dateTime.getHours();
     let m = dateTime.getMinutes();
