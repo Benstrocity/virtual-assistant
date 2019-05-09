@@ -1,6 +1,10 @@
-html {
+* {
     box-sizing: border-box;
-    box-sizing: padding-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
     font-family: Arial, sans-serif;
     overflow: scroll;
     overflow-x: hidden;
@@ -9,12 +13,7 @@ html {
 .appWindow {
     display: flex;
     flex-direction: column;
-    margin: 5% auto;
-    max-width: 250px;
-    min-width: 250px;
-    height: 500px;
-    border-radius: 15px;
-    box-shadow: 2px 2px 15px, -2px 0 15px #000;
+    height: 100vh;
     overflow: hidden;
     position: relative;
 }
@@ -23,11 +22,28 @@ html {
     display: flex;
     flex-direction: column;
     align-self: center;
-    margin-top: 50%;
-    background-color: white;
+    margin-top: 50px;
+    background-color: #fff;
     padding: 5%;
-    box-shadow: 5px 5px 20px, -5px 0 20px #000;
     border-radius: 15px;
+}
+
+#userName {
+    border: 1px solid chocolate;
+    border-radius: 10px;
+    height: 35px;
+    width: 80%;
+    padding-left: 2%;
+    margin: 0px auto 15px auto;
+}
+
+#assistantName {
+    border: 1px solid chocolate;
+    border-radius: 10px;
+    height: 35px;
+    width: 80%;
+    padding-left: 2%;
+    margin: auto;
 }
 
 .appSettingsIcon {
@@ -47,10 +63,12 @@ html {
     background-color: #fff;
     border-radius: 15px;
     box-shadow: 5px 5px 15px, -5px 0 15px #000;
-    width: 75%;
     align-self: center;
     top: 15%;
-    height: 300px;
+    min-width: 300px;
+    max-width: 300px;
+    min-height: 350px;
+    max-height: 350px;
     overflow-y: auto;
     position: absolute;
 }
@@ -62,7 +80,6 @@ html {
 #settingsMenu h2 {
     margin: 0;
     text-align: center;
-    font-size: 1.25rem;
 }
 
 #styleSelect p {
@@ -87,28 +104,30 @@ html {
 #textColor {
     font-size: .75rem;
     width: 40%;
+    margin-bottom: 15px;
 }
 
 #settingButtons {
-    margin: 3% auto auto auto;
+    margin: 10px auto;
     text-align: center;
 }
 
 #confirmSettings {
-    font-size: .75rem;
     border-radius: 5px;
     background-color: chocolate;
     border: none;
+    margin-right: 10px;
     color: #fff;
-    margin-bottom: 15px;
+    padding: 5px;
 }
 
 #resetSettings {
-    font-size: .75rem;
     border-radius: 5px;
     background-color: #000;
     border: none;
+    margin-left: 10px;
     color: #fff;
+    padding: 5px;
 }
 
 .userInput {
@@ -124,8 +143,6 @@ html {
     flex-direction: column;
     height: 45px;
     background-color: chocolate;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
 }
 
 #appTime {
@@ -137,25 +154,13 @@ html {
     margin: 0;
 }
 
-#userName {
-    border: 1px solid chocolate;
-    height: 20px;
-    padding-left: 2%;
-    margin-bottom: 10%;
-}
-
-#assistantName {
-    border: 1px solid chocolate;
-    height: 20px;
-    padding-left: 2%;
-}
-
 #appStartButton {
     color: #fff;
     width: 50%;
     align-self: center;
     background-color: chocolate;
     border: none;
+    border-radius: 3px;
     height: 30px;
 }
 
@@ -171,7 +176,7 @@ html {
 .appInteract {
     display: flex;
     flex-direction: column;
-    max-height: 420px;
+    max-height: 525px;
     overflow-y: scroll;
 }
 
@@ -183,29 +188,27 @@ html {
     display: none;
     font-size: .85rem;
     width: 55%;
-    margin-left: 2%;
+    margin: 20px 0px 20px 15px;
     background-color: lightgray;
     border-radius: 10px;
     padding: 2%;
-    margin-bottom: 0;
 }
 
 .appQuestion {
     display: none;
     align-self: flex-end;
     font-size: .85rem;
-    width: 55%;
-    margin-right: 2%;
+    margin: 0px 15px 0 0;
     background-color: chocolate;
     border-radius: 10px;
     padding: 2%;
-    margin-bottom: 0;
 }
 
 #appText {
     border-radius: 5px;
     border: 1px solid lightgray;
     padding-left: 2%;
+    width: 350px;
     min-height: 20px;
 }
 
@@ -215,5 +218,6 @@ html {
     border: none;
     color: #fff;
     min-height: 20px;
+    padding: 10px;
     margin-left: 5px;
 }

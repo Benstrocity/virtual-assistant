@@ -31,3 +31,7 @@ v0.4.0 Update - 11/27/2018
 v0.4.1 Patch - 11/28/2018
 - Update to auto scrolling. The message window will now auto scroll completely down to the newest response from the assistant
 - Update to settings menu. 'Cancel' button changed to 'Reset'. Resets settings to default. (Current issue with clearing the message bubble settings)
+
+v0.5.0 Update - 5/9/2019
+- Complete overhaul of app UI to improve mobile experience
+- Fixed auto scrolling issue

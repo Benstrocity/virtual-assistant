@@ -84,7 +84,7 @@ function startApp () {
             appInteract.appendChild(newQuestion);
             newQuestion.style.display = 'inline';
             questionArr.push(newQuestion);
-            
+
             autoRespond();  
         }
     });
@@ -257,13 +257,10 @@ function autoRespond () {
         
         appText.value = ''; //clears user input field after response
     }
-}
 
-//Updates scrolling for the message window automatically every 1/10 of a second
-function scrollToBottom() {
+    //When a response is given to a question, the screen will automatically scroll to the most recent response
     appInteract.scrollTop = appInteract.scrollHeight;
 }
-setInterval(scrollToBottom, 100);
 
 //Get local date and time to display in the appHead for the user
 //Time does not update automatically - fix in v0.3.1 patch
