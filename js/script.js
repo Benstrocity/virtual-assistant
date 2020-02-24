@@ -109,42 +109,67 @@ function startApp () {
             appSendButton.style.zIndex = '1';
             
             function updateTrim () {
-                let a = settingsArr[0].selectedIndex;
-                let newTrim = settingsArr[0].options[a].innerHTML;
-                appHead.style.backgroundColor = newTrim;
+                if (trimSelect.value !== "default") {
+                    let a = settingsArr[0].selectedIndex;
+                    let newTrim = settingsArr[0].options[a].innerHTML;
+                    appHead.style.backgroundColor = newTrim;
+                } else {
+                    appHead.style.backgroundColor = 'chocolate';
+                }
             }
             updateTrim();
             
             function updateBg () {
-                let b = settingsArr[1].selectedIndex;
-                let newBG = settingsArr[1].options[b].innerHTML;
-                appWindow.style.backgroundColor = newBG;
+                if (bgSelect.value !== "default") {
+                    let b = settingsArr[1].selectedIndex;
+                    let newBG = settingsArr[1].options[b].innerHTML;
+                    appWindow.style.backgroundColor = newBG;
+                } else {
+                    appWindow.style.backgroundColor = 'white';
+                }
             }
             updateBg();
             
             function updateMsg () {
-                let c = settingsArr[2].selectedIndex;
-                let newMsg = settingsArr[2].options[c].innerHTML;
-                for (let i = 0; i < questionArr.length; i++) {
-                    questionArr[i].style.backgroundColor = newMsg;
+                if (msgSelect.value !== "default") {
+                    let c = settingsArr[2].selectedIndex;
+                    let newMsg = settingsArr[2].options[c].innerHTML;
+                    for (let i = 0; i < questionArr.length; i++) {
+                        questionArr[i].style.backgroundColor = newMsg;
+                    }
+                } else {
+                    for (let i = 0; i < questionArr.length; i++) {
+                        questionArr[i].style.backgroundColor = 'chocolate';
+                    }
                 }
             }
             setInterval(updateMsg);
             
             function updateBtn () {
-                let d = settingsArr[3].selectedIndex;
-                let newBtn = settingsArr[3].options[d].innerHTML;
-                appSendButton.style.backgroundColor = newBtn;
-                confirmSettings.style.backgroundColor = newBtn;
+                if (btnSelect.value !== "default") {
+                    let d = settingsArr[3].selectedIndex;
+                    let newBtn = settingsArr[3].options[d].innerHTML;
+                    appSendButton.style.backgroundColor = newBtn;
+                    confirmSettings.style.backgroundColor = newBtn;
+                } else {
+                    appSendButton.style.backgroundColor = 'chocolate';
+                    confirmSettings.style.backgroundColor = 'chocolate';
+                }
             }
             updateBtn();
             
             function updateTxt () {
-                let e = settingsArr[4].selectedIndex;
-                let newTxt = settingsArr[4].options[e].innerHTML;
-                appSendButton.style.color = newTxt;
-                appInteract.style.color = newTxt;
-                appHead.style.color = newTxt;
+                if (txtSelect.value !== "default") {
+                    let e = settingsArr[4].selectedIndex;
+                    let newTxt = settingsArr[4].options[e].innerHTML;
+                    appSendButton.style.color = newTxt;
+                    appInteract.style.color = newTxt;
+                    appHead.style.color = newTxt;
+                } else {
+                    appSendButton.style.color = 'black';
+                    appInteract.style.color = 'black';
+                    appHead.style.color = 'black';
+                }
             }
             updateTxt();
         });

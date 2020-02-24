@@ -180,7 +180,7 @@ html {
 .appInteract {
     display: flex;
     flex-direction: column;
-    max-height: 525px;
+    margin-bottom: 4em;
     overflow-y: scroll;
 }
 
