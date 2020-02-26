@@ -42,3 +42,10 @@ v0.5.1 Update 2/24/2020
 - Changed some functions to IIFE's
 - Moved responses into another javascript file as an object
 - Cleaned up code base
+
+v0.6 2/26/2020
+- Added feature to clear the message thread by typing "clear"
+- Added morning/evening greetings based on AM/PM condition
+- Implemented completely new color pallett
+- Applied a minimum height style to the apps heading to fix bug with heading height shrinking as messages scroll
+- Applied maximum width to the users question and assistants response bubbles so that they will word wrap properly

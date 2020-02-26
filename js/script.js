@@ -5,6 +5,7 @@ const appInput = document.querySelector('.appInput');
 const assistantName = document.querySelector('#assistantName');
 const userName = document.querySelector('#userName');
 const appTime = document.querySelector('#appTime');
+let ampm;
 const appHead = document.querySelector('#appHead');
 const appAssistant = document.querySelector('#appAssistant');
 const appResponseText = document.querySelector('.appResponse');
@@ -28,10 +29,11 @@ let newText;
 let newQuestion;
 let questionArr = [];
 let newTextLower;
+let threadCleared;
 
 //Load the application
 (function loadApp () {
-    appWindow.style.backgroundColor = 'rgba(0, 0, 0, .75)';
+    appWindow.style.backgroundColor = 'darkslategray';
     appText.style.zIndex = '-1';
     appSendButton.style.zIndex = '-1';
     appResponseText.style.zIndex = '-1';
@@ -50,15 +52,21 @@ let newTextLower;
 
 //This function also contains an event listener for user input which triggers the assistant to respond in autoRespond()
 function startApp () {
-    appWindow.style.backgroundColor = 'rgb(255, 255, 255)';
     appText.style.zIndex = '1';
     appSendButton.style.zIndex = '1';
     appResponseText.style.zIndex = '1';
     appInput.style.display = 'none';
     
     appAssistant.innerHTML = assistantName.value;
-    appResponseText.innerHTML = `${responseText[0].greeting}`; 
-    appResponseText.style.display = "inline";
+    appAssistant.style.color = 'darkslategray';
+
+    if (ampm === 'AM') {
+        appResponseText.innerHTML = `${responseText[0].morningGreet}`; 
+        appResponseText.style.display = "inline";
+    } else {
+        appResponseText.innerHTML = `${responseText[0].eveningGreet}`; 
+        appResponseText.style.display = 'inline';
+    }
     
     //Click 'Send' button to send input
     appSendButton.addEventListener('click', () => {
@@ -86,7 +94,6 @@ function startApp () {
     
     //Settings icon enabled once startApp() is called
     appSettingsIcon.addEventListener('click', () => {
-        appWindow.style.backgroundColor = 'rgba(0, 0, 0, .75)';
         appText.style.zIndex = '-1';
         appSendButton.style.zIndex = '-1';
         appInteract.style.zIndex = '-1';
@@ -97,7 +104,7 @@ function startApp () {
         confirmSettings.addEventListener('click', () => {
             appSettingsMenu.style.display = 'none';
             appSettingsMenu.style.zIndex = '0';
-            appWindow.style.backgroundColor = '#fff';
+            appWindow.style.backgroundColor = 'floralwhite';
             appInteract.style.zIndex = '1';
             appText.style.zIndex = '1';
             appSendButton.style.zIndex = '1';
@@ -108,7 +115,7 @@ function startApp () {
                     let newTrim = settingsArr[0].options[a].innerHTML;
                     appHead.style.backgroundColor = newTrim;
                 } else {
-                    appHead.style.backgroundColor = 'chocolate';
+                    appHead.style.backgroundColor = 'indianred';
                 }
             })();
             
@@ -118,7 +125,7 @@ function startApp () {
                     let newBG = settingsArr[1].options[b].innerHTML;
                     appWindow.style.backgroundColor = newBG;
                 } else {
-                    appWindow.style.backgroundColor = 'white';
+                    appWindow.style.backgroundColor = 'darkslategray';
                 }
             })();
             
@@ -131,7 +138,7 @@ function startApp () {
                     }
                 } else {
                     for (let i = 0; i < questionArr.length; i++) {
-                        questionArr[i].style.backgroundColor = 'chocolate';
+                        questionArr[i].style.backgroundColor = 'indianred';
                     }
                 }
             }
@@ -144,8 +151,8 @@ function startApp () {
                     appSendButton.style.backgroundColor = newBtn;
                     confirmSettings.style.backgroundColor = newBtn;
                 } else {
-                    appSendButton.style.backgroundColor = 'chocolate';
-                    confirmSettings.style.backgroundColor = 'chocolate';
+                    appSendButton.style.backgroundColor = 'indianred';
+                    confirmSettings.style.backgroundColor = 'indianred';
                 }
             })();
             
@@ -157,9 +164,9 @@ function startApp () {
                     appInteract.style.color = newTxt;
                     appHead.style.color = newTxt;
                 } else {
-                    appSendButton.style.color = 'black';
-                    appInteract.style.color = 'black';
-                    appHead.style.color = 'black';
+                    appSendButton.style.color = 'floralwhite';
+                    appInteract.style.color = 'floralwhite';
+                    appHead.style.color = 'floralwhite';
                 }
             })();
         });
@@ -168,23 +175,23 @@ function startApp () {
         resetSettings.addEventListener('click', () => {
             appSettingsMenu.style.display = 'none';
             appSettingsMenu.style.zIndex = '0';
-            appWindow.style.backgroundColor = '#fff';
+            appWindow.style.backgroundColor = 'floralwhite';
             appInteract.style.zIndex = '1';
             appText.style.zIndex = '1';
             appSendButton.style.zIndex = '1';
 
-            appHead.style.backgroundColor = 'chocolate';
-            appWindow.style.backgroundColor = 'white';
+            appHead.style.backgroundColor = 'indianred';
+            appWindow.style.backgroundColor = 'darkslategray';
             
             for (let i = 0; i < questionArr.length; i++) {
-                questionArr[i].style.backgroundColor = 'chocolate';
+                questionArr[i].style.backgroundColor = 'indianred';
             }
                 
-            appSendButton.style.backgroundColor = 'chocolate';
-            confirmSettings.style.backgroundColor = 'chocolate';
-            appSendButton.style.color = 'black';
-            appInteract.style.color = 'black';
-            appHead.style.color = 'black';
+            appSendButton.style.backgroundColor = 'indianred';
+            confirmSettings.style.backgroundColor = 'indianred';
+            appSendButton.style.color = 'floralwhite';
+            appInteract.style.color = 'floralwhite';
+            appHead.style.color = 'floralwhite';
             
             settingsArr[0].options.innerHTML = settingsArr[0].options[0].innerHTML;
         });
@@ -197,6 +204,18 @@ function autoRespond () {
     newText = appText.value; //store user input in a new variable
     newTextLower = newText.toLowerCase(); //Format user input to lowercase
     newResponse.setAttribute('class', 'appResponse');
+
+    //freshThread() looks to see if the user has cleared the message thread and if so, responds with feedback confirming the action.
+    function freshThread() {
+        if (threadCleared) {
+            newResponse.innerHTML = `${responseText[0].clear}`;
+            appInteract.appendChild(newResponse);
+            newResponse.style.display = 'inline';
+            threadCleared = false;
+        } else {
+            threadCleared = true;
+        }   
+    }
     
     if (newTextLower === 'hello' || newTextLower === 'hi') {
         newResponse.innerHTML = responseText[0].hello;
@@ -260,6 +279,11 @@ function autoRespond () {
         appInteract.appendChild(newResponse);
         newResponse.style.display = 'inline';
         appText.value = '';
+    } else if (newTextLower === 'clear') {
+        appInteract.textContent = '';
+        threadCleared = true;
+        freshThread();
+        appText.value = '';
     } else {
         newResponse.innerHTML = `${responseText[0].noInfo}${userName.value}.`;
         appInteract.appendChild(newResponse);
@@ -274,7 +298,6 @@ function getTime() {
     let dateTime = new Date();
     let h = dateTime.getHours();
     let m = dateTime.getMinutes();
-    let ampm;
     let clock;
     //Convert to non military time
     if (h >= 12) {

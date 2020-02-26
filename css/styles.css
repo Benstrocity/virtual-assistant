@@ -27,13 +27,13 @@ html {
     flex-direction: column;
     align-self: center;
     margin-top: 50px;
-    background-color: #fff;
+    background-color: floralwhite;
     padding: 5%;
     border-radius: 15px;
 }
 
 #userName {
-    border: 1px solid chocolate;
+    border: 1px solid indianred;
     border-radius: 10px;
     height: 35px;
     width: 80%;
@@ -42,12 +42,17 @@ html {
 }
 
 #assistantName {
-    border: 1px solid chocolate;
+    border: 1px solid indianred;
+    color: darkslategray;
     border-radius: 10px;
     height: 35px;
     width: 80%;
     padding-left: 2%;
     margin: auto;
+}
+
+#appAssistant {
+    color: darkslategray;
 }
 
 .appSettingsIcon {
@@ -64,9 +69,8 @@ html {
     display: none;
     flex-direction: column;
     align-items: center;
-    background-color: #fff;
+    background-color: floralwhite;
     border-radius: 15px;
-    box-shadow: 5px 5px 15px, -5px 0 15px #000;
     align-self: center;
     top: 15%;
     min-width: 300px;
@@ -118,19 +122,19 @@ html {
 
 #confirmSettings {
     border-radius: 5px;
-    background-color: chocolate;
+    background-color: indianred;
     border: none;
     margin-right: 10px;
-    color: #fff;
+    color: floralwhite;
     padding: 5px;
 }
 
 #resetSettings {
     border-radius: 5px;
-    background-color: #000;
+    background-color: floralwhite;
     border: none;
     margin-left: 10px;
-    color: #fff;
+    color: darkslategray;
     padding: 5px;
 }
 
@@ -145,13 +149,14 @@ html {
     display: flex;
     align-items: center;
     flex-direction: column;
-    height: 45px;
-    background-color: chocolate;
+    min-height: 50px !important;
+    background-color: indianred;
 }
 
 #appTime {
     font-size: .75rem;
-    color: #fff;
+    color: floralwhite;
+    margin-bottom: 5px;
 }
 
 #appAssistant {
@@ -159,10 +164,10 @@ html {
 }
 
 #appStartButton {
-    color: #fff;
+    color: floralwhite;
     width: 50%;
     align-self: center;
-    background-color: chocolate;
+    background-color: indianred;
     border: none;
     border-radius: 3px;
     height: 30px;
@@ -190,10 +195,11 @@ html {
 
 .appResponse {
     display: none;
-    font-size: .85rem;
-    width: 55%;
+    font-size: 1.4em;
+    max-width: 50%;
     margin: 20px 0px 20px 15px;
-    background-color: lightgray;
+    background-color: floralwhite;
+    color: darkslategray;
     border-radius: 10px;
     padding: 2%;
 }
@@ -201,16 +207,18 @@ html {
 .appQuestion {
     display: none;
     align-self: flex-end;
-    font-size: .85rem;
+    font-size: 1.4em;
+    max-width: 50%;
     margin: 0px 15px 0 0;
-    background-color: chocolate;
+    background-color: indianred;
+    color: floralwhite;
     border-radius: 10px;
     padding: 2%;
 }
 
 #appText {
     border-radius: 5px;
-    border: 1px solid lightgray;
+    border: 1px solid floralwhite;
     padding-left: 2%;
     width: 350px;
     min-height: 20px;
@@ -218,9 +226,9 @@ html {
 
 #appSendButton {
     border-radius: 5px;
-    background-color: chocolate;
+    background-color: indianred;
     border: none;
-    color: #fff;
+    color: floralwhite;
     min-height: 20px;
     padding: 10px;
     margin-left: 5px;
