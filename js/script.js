@@ -37,6 +37,7 @@ let threadCleared;
     appText.style.zIndex = '-1';
     appSendButton.style.zIndex = '-1';
     appResponseText.style.zIndex = '-1';
+    userName.focus();
     
     //Send input to start app by clicking 'Start'
     appStartButton.addEventListener('click', () => {
@@ -56,6 +57,7 @@ function startApp () {
     appSendButton.style.zIndex = '1';
     appResponseText.style.zIndex = '1';
     appInput.style.display = 'none';
+    appText.focus();
     
     appAssistant.innerHTML = assistantName.value;
     appAssistant.style.color = 'darkslategray';
@@ -94,15 +96,21 @@ function startApp () {
     
     //Settings icon enabled once startApp() is called
     appSettingsIcon.addEventListener('click', () => {
-        appText.style.zIndex = '-1';
-        appSendButton.style.zIndex = '-1';
-        appInteract.style.zIndex = '-1';
+        appText.style.opacity = '.4';
+        appText.style.zIndex = '0';
+        appSendButton.style.opacity = '.4';
+        appSendButton.style.zIndex = '0';
+        appInteract.style.opacity = '.4';
+        appInteract.style.zIndex = '0';
         appSettingsMenu.style.display = 'block';
-        appInput.style.display = 'none';        
+        appSettingsMenu.style.zIndex = '1';
         
         //When confirm button is clicked, menu dissapears and settings are saved
         confirmSettings.addEventListener('click', () => {
             appSettingsMenu.style.display = 'none';
+            appText.style.opacity = '1';
+            appSendButton.style.opacity = '1';
+            appInteract.style.opacity = '1';
             appSettingsMenu.style.zIndex = '0';
             appWindow.style.backgroundColor = 'floralwhite';
             appInteract.style.zIndex = '1';

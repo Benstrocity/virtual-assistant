@@ -41,6 +41,10 @@ html {
     margin: 0px auto 15px auto;
 }
 
+input:focus {
+    outline: 0;
+}
+
 #assistantName {
     border: 1px solid indianred;
     color: darkslategray;
